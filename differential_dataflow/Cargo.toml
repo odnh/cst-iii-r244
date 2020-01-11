@@ -1,0 +1,12 @@
+[package]
+name = "differential_dataflow"
+version = "0.1.0"
+authors = ["Oliver Hope <oliverdnhope@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+timely = "0.11"
+differential-dataflow = "0.11"
+graph_map = "0.1"
