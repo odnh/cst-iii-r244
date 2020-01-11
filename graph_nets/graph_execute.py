@@ -26,6 +26,7 @@ import sonnet as snt
 import tensorflow as tf
 
 import sys
+import time
 
 """# Helper functions"""
 
@@ -255,7 +256,7 @@ def run_sssp(filename):
 
 def run_cc(filename):
   tf.reset_default_graph()
-  input_graphs = utils_tf.data_dicts_to_graphs_tuple([make_sssp_graph(read_graph(filename))])
+  input_graphs = utils_tf.data_dicts_to_graphs_tuple([make_cc_graph(read_graph(filename))])
 
   node_block = cc_node_block()
   edge_block = cc_edge_block()
@@ -297,3 +298,14 @@ def run_pr(filename, iterations):
   sess.close()
 
   return (result_g, steps)
+
+alg = int(sys.argv[1])
+fname = sys.argv[2]
+
+start_time = time.time()
+res = [run_cc, run_sssp, lambda f: run_pr(f, 10)][alg](fname)
+end_time = time.time()
+np.set_printoptions(threshold=sys.maxsize)
+print(res[0].nodes)
+print("Steps:", res[1])
+print("TIme:", end_time - start_time)

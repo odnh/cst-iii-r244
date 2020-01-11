@@ -130,7 +130,7 @@ int main(int argc, const char ** argv) {
     
     if (get_option_int("onlyresult", 0) == 0) {
         /* Run */
-        ConnectedComponentsProgram program;
+        SSSPProgram program;
         graphchi_engine<VertexDataType, EdgeDataType> engine(filename, nshards, scheduler, m); 
         engine.run(program, niters);
     }
